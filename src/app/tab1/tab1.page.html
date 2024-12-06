@@ -5,7 +5,6 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -13,5 +12,43 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!-- Text input -->
+  <ion-item>
+    <ion-input aria-label="Textfeld" placeholder="Textfeld" [(ngModel)]="formData.text"></ion-input>
+  </ion-item>
+
+  <!-- Range slider -->
+  <ion-item>
+    <ion-range aria-label="Regler" [ticks]="true" [snaps]="true" [min]="0" [max]="10" [pin]="true" [(ngModel)]="formData.range"></ion-range>
+  </ion-item>
+
+  <!-- Color selection -->
+  <ion-list>
+    <ion-item>
+      <ion-select required="true" placeholder="Select a Color" (ionChange)="setColor($event)">
+        <div slot="label">Favorite Color <ion-text color="danger">(Required)</ion-text></div>
+        <ion-select-option value="green">Green</ion-select-option>
+        <ion-select-option value="blue">Blue</ion-select-option>
+        <ion-select-option value="orange">Orange</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <!-- Display area -->
+  <ion-item>
+    <ion-label>
+      <h3>Current Input Values:</h3>
+      <p>Text: {{formData.text}}</p>
+      <p>Range: {{formData.range}}</p>
+      <p>Color: {{color}}</p>
+    </ion-label>
+  </ion-item>
+
+  <!-- Toast message -->
+  <ion-toast 
+    [isOpen]="isToastOpen" 
+    message="Color was saved: {{color}}" 
+    [duration]="3000" 
+    (didDismiss)="setOpen(false)">
+  </ion-toast>
 </ion-content>

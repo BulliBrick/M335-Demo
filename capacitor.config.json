@@ -1,0 +1,6 @@
+{
+    "appId": "m335.demo",
+    "appName": "m335-demo",
+    "webDir": "www",
+    "bundledWebRuntime" : false
+}
